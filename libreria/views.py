@@ -25,6 +25,18 @@ def drogas(request):
    preguntas = Pregunta.objects.filter(test=DEP_ADO)  # Filtrar las preguntas solo para el test
    return render(request, 'drogas.html', {'preguntas': preguntas}) # Mandar las preguntas al test para que se recorran en un for
 
+def beck(request):
+   #aqui va el test DEP-ADO xd
+   BHS = Test.objects.get(nombre='BHS')  # Recuperar el test 
+   preguntas = Pregunta.objects.filter(test=BHS)  # Filtrar las preguntas solo para el test
+   return render(request, 'beck.html', {'preguntas': preguntas}) # Mandar las preguntas al test para que se recorran en un for
+
+def edds(request):
+   #aqui va el test DEP-ADO xd
+   EDDS = Test.objects.get(nombre='EDDS')  # Recuperar el test 
+   preguntas = Pregunta.objects.filter(test=EDDS)  # Filtrar las preguntas solo para el test
+   return render(request, 'beck.html', {'preguntas': preguntas}) # Mandar las preguntas al test para que se recorran en un for
+
 def alcoholismo(request):
    #aqui va el audit xd
    test_audit = Test.objects.get(nombre='AUDIT')  # Recuperar el test AUDIT
