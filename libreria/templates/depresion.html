@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Roboto:wght@100;400;700;900&display=swap"
+            rel="stylesheet">
+        <link href="{% static 'css/normalize.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+        <title>Document</title>
+    </head>
+    <body class="body-preguntas">
+        <div>
+            <header class="header-preguntas"></header>
+
+            <div class="contenedor-preguntas"> <!-- solo pone margin-->
+                <div class="contenedor contenido-preguntas"> <!-- centra el contenido y le da un display flex-->
+                    <form>
+                        <div class="pregunta">
+                            <h1 class="titulo-pregunta">Test de ansiedad</h1>
+                        </div>
+
+                        <div class="pregunta">
+                            <label>¿Usted toma?</label>
+                            <div>
+                                <input id="si" type="radio" name="res">
+                                <label for ="si">si</label>
+                            </div>
+
+                            <div>
+                                <input id="no" type="radio" name="res">
+                                <label for="no">no</label>
+                            </div>
+                        </div>
+
+                        <input type="submit" value="Enviar">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p><span>Test</span> TecNM</p>
+        </footer>
+    </body>
+</html>

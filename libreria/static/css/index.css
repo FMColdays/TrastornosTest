@@ -1,0 +1,262 @@
+/* Principal */
+
+:root {
+    --gris: #a6a4a4;
+    --blanco: #FFFFFF;
+    --grisClaro: #f1f3f4;
+    --grisMedioClaro: #e1e1e1e1;
+    --morado: #8940BD;
+    --headercolor: #009688;
+    --fondopreguntas: #d9efed;
+
+
+    --fuentePrincipal: 'Roboto', sans-serif;
+    --fuenteSecundaria: 'Lato', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuentePrincipal);
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+/* Globales */
+
+.contenedor {
+    max-width: 120rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 900;
+    font-family: var(--fuenteSecundaria);
+    margin: calc(var(--separacion) / 2) 0;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+
+/* Header */
+
+.header {
+    width: 100%;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+
+}
+
+.imagen-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: .3rem 0;
+}
+
+.imagen-header img {
+    width: 100%;
+    height: 7rem;
+}
+
+.imagen-header p {
+    font-size: 2rem;
+    font-family: var(--fuenteSecundaria);
+}
+
+/* Tests */
+
+.main-test {
+    width: 100%;
+    height: auto;
+    padding: 1rem 0;
+    background-color: var(--grisClaro);
+}
+
+.main-test>div>p {
+    margin: 0 0 2rem 7rem;
+    font-family: var(--fuenteSecundaria);
+}
+
+.contenedor-test, .contenedor-test-realizados {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.test, .test-realizados {
+    width: 20rem;
+    height: 13rem;
+    border-radius: 5px;
+    border: 1px solid var(--grisMedioClaro);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.test:hover, .test-realizados:hover {
+    border: 1px solid var(--morado);
+}
+
+.test:hover {
+    transform: scale(1.1);
+}
+
+.test img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contenedor-test>div p {
+    text-align: center;
+    margin-top: 1rem
+}
+
+/* test realizador */
+
+.test-realizados {
+    width: 22rem;
+    height: 22rem;
+}
+
+.test-realizados img {
+    width: 100%;
+    height: 70%;
+    padding-bottom: 1rem;
+    object-fit: cover;
+    border-bottom: 1px solid var(--grisMedioClaro);
+}
+
+.test-realizados p {
+    text-align: center;
+    font-family: var(--fuenteSecundaria);
+}
+
+.contenedor-test-realizados {
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+@media (max-width: 508px) {
+    .contenedor-test-realizados {
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* contenedor preguntas */
+
+.body-preguntas {
+    background-color: var(--fondopreguntas);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header-preguntas {
+    width: 100%;
+    height: 20rem;
+    background-color: var(--headercolor);
+}
+
+.contenedor-preguntas {
+    margin-top: -10rem;
+    margin-bottom: 3rem;
+}
+
+.titulo-pregunta{
+    font-family: var(--fuenteSecundaria);
+    font-weight: 400;
+    margin: 2rem 0;
+}
+
+.contenido-preguntas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido-preguntas form {
+    width: 60%;
+    height: auto;
+
+}
+
+.contenido-preguntas .pregunta {
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--gris);
+    border-radius: 10px;
+    background-color: var(--blanco);
+}
+
+.pregunta>div {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pregunta input[type="radio"] {
+    width: 2rem;
+    height: 2rem;
+    transition: all 0.2s ease;
+}
+
+.contenido-preguntas input[type="submit"] {
+    width: 8rem;
+    background-color: #009688;
+    color: var(--blanco);
+    border-radius: .5rem;
+    border: none;
+    padding: .7rem;
+    font-family: var(--fuentePrincipal);
+    font-weight: 400;
+    cursor: pointer;
+    transition:  background-color .2s ease;
+}
+
+.contenido-preguntas input[type="submit"]:hover{
+    background-color: #0b6b61;
+}
+
+/* footer */
+
+.footer {
+    width: 100%;
+    height: 100px;
+    pointer-events: none;
+}
+
+.footer p{
+    text-align: center;
+    font-size: 2.5rem;
+    color: #989494;
+    font-family: var(--fuenteSecundaria);
+    font-weight: 400;
+}
+
+.footer p span{
+    color: #585555;
+    font-family: var(--fuenteSecundaria);
+    font-weight: 900;
+}
