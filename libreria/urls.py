@@ -1,4 +1,5 @@
-from django.urls import path
+from django.urls import path, include
+from django.contrib import admin
 from . import views
 
 urlpatterns = [
@@ -9,4 +10,7 @@ urlpatterns = [
     path('DEP-ADO/', views.drogas, name='drogas'),
     path('BECK/', views.beck, name='beck'),
     path('EDDS/', views.edds, name='edds'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('salir/', views.salir, name='salir'),
+    path('registro/', views.registro, name='registro'),
 ]
