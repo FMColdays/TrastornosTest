@@ -16,33 +16,36 @@
         <link href="{% static 'css/index.css' %}" rel="stylesheet" />
         <title>Test EDDS</title>
     </head>
-    <body class="body-preguntas">
+    <body style="background-color: #d9efde;">
         <div>
-            <header class="header-preguntas"></header>
+            <header class="header-preguntas" style="background-color: #009634;"></header>
 
             <div class="contenedor-preguntas"> <!-- solo pone margin-->
-                <div class="contenedor contenido-preguntas"> <!-- centra el contenido y le da un display flex-->
+                <div class="contenedor contenido-preguntas">
+                    <!-- centra el contenido y le da un display flex-->
                     <form action="#" method="POST">
                         <div class="pregunta">
                             <h1 class="titulo-pregunta">Test EDDS</h1>
                         </div>
-                    
+
                         {% for pregunta in preguntas %}
-                            <div class="pregunta">
-                                <label>{{ pregunta.pregunta }}</label>
-                                {% for opcion in pregunta.opcionrespuesta_set.all %}
-                                    <div>
-                                        <input id="{{ opcion.id }}" type="radio" name="pregunta{{ pregunta.id }}" value="{{ opcion.id }}">
-                                        <label for="{{ opcion.id }}">{{ opcion.opcion }}</label>
-                                    </div>
-                                {% endfor %}
+                        <div class="pregunta">
+                            <label>{{ pregunta.pregunta }}</label>
+                            {% for opcion in pregunta.opcionrespuesta_set.all %}
+                            <div>
+                                <input id="{{ opcion.id }}" type="radio"
+                                    name="pregunta{{ pregunta.id }}"
+                                    value="{{ opcion.id }}">
+                                <label for="{{ opcion.id }}">{{ opcion.opcion }}</label>
                             </div>
+                            {% endfor %}
+                        </div>
                         {% endfor %}
-                    
+
                         <input type="submit" value="Enviar">
                         {% csrf_token %}
                     </form>
-                    
+
                 </div>
             </div>
         </div>
