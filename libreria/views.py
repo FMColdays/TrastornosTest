@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Pregunta, Test
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import logout, login, authenticate
+from .forms import UsuarioForm
+from django.contrib.auth import logout, login
 # Create your views here.
 
 
@@ -10,21 +11,25 @@ from django.contrib.auth import logout, login, authenticate
 def inicio(request):
     return render(request, 'index.html')
 
+
 def registro(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
+        perfil_form = UsuarioForm(request.POST)
+        if form.is_valid() and perfil_form.is_valid():
+            user = form.save()
+            perfil = perfil_form.save(commit=False)
+            perfil.user = user
+            perfil.save()
             login(request, user)
             return redirect('inicio')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/registro.html', {'form': form})
+        perfil_form = UsuarioForm()
+    return render(request, 'registration/registro.html', {'form': form, 'perfil_form': perfil_form})
 
 
+@login_required
 def depresion(request):
     # aqui va el test phq-9 xd
     test_PHQ = Test.objects.get(nombre='PHQ-9')  # Recuperar el test
@@ -33,7 +38,7 @@ def depresion(request):
     # Mandar las preguntas al test para que se recorran en un for
     return render(request, 'depresion.html', {'preguntas': preguntas})
 
-
+@login_required
 def mdq(request):
     # aqui va el test mdq xd
     test_MDQ = Test.objects.get(nombre='MDQ')  # Recuperar el test
@@ -42,7 +47,7 @@ def mdq(request):
     # Mandar las preguntas al test para que se recorran en un for
     return render(request, 'mdq.html', {'preguntas': preguntas})
 
-
+@login_required
 def drogas(request):
     # aqui va el test DEP-ADO xd
     DEP_ADO = Test.objects.get(nombre='DEP-ADO')  # Recuperar el test
@@ -51,7 +56,7 @@ def drogas(request):
     # Mandar las preguntas al test para que se recorran en un for
     return render(request, 'drogas.html', {'preguntas': preguntas})
 
-
+@login_required
 def beck(request):
     # aqui va el test DEP-ADO xd
     BHS = Test.objects.get(nombre='BHS')  # Recuperar el test
@@ -60,7 +65,7 @@ def beck(request):
     # Mandar las preguntas al test para que se recorran en un for
     return render(request, 'beck.html', {'preguntas': preguntas})
 
-
+@login_required
 def edds(request):
     # aqui va el test DEP-ADO xd
     EDDS = Test.objects.get(nombre='EDDS')  # Recuperar el test
@@ -69,7 +74,7 @@ def edds(request):
     # Mandar las preguntas al test para que se recorran en un for
     return render(request, 'edds.html', {'preguntas': preguntas})
 
-
+@login_required
 def alcoholismo(request):
     # aqui va el audit xd
     test_audit = Test.objects.get(nombre='AUDIT')  # Recuperar el test AUDIT
@@ -77,7 +82,7 @@ def alcoholismo(request):
     preguntas = Pregunta.objects.filter(test=test_audit)
     return render(request, 'alcoholismo.html', {'preguntas': preguntas})
 
-
+@login_required
 def salir(request):
     logout(request)
-    return redirect('login')
+    return redirect('/')
