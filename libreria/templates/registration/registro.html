@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registrarse</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Roboto:wght@100;400;700;900&display=swap"
+            rel="stylesheet">
+        <link
+            rel="shortcut icon"
+            href="https://cdn-icons-png.flaticon.com/512/3923/3923306.png" />
+        <link href="../../static/css/normalize.css" rel="stylesheet" />
+        <link href="../../static/css/index.css" rel="stylesheet" />
+    </head>
+    <body style="background-color: aliceblue;">
+        <div>
+            <header class="header-preguntas" style="background-color: #009688;"></header>
+
+            <div class="contenedor-registro">
+                <div class="contenedor contenido-preguntas ">
+                    <form class="form-registro " action="{% url 'registro' %}"
+                        method="post">
+                        <div class="pregunta ">
+                            <h1 class="titulo-pregunta">Registrarse</h1>
+                        </div>
+                        {% csrf_token %}
+
+                        <div class="pregunta opciones">
+                            <label for="usuario">Usuario</label>
+                            <input id="usuario" type="text" name="{{ form.username.html_name }}" placeholder="Ingrese un nombre de usuario">
+                        </div>
+
+                        <div class="pregunta opciones">
+                            <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+                            <input type="text" name="{{ form.password1.html_name }}" placeholder="Ingrese su contraseña">
+                        </div>
+
+                        <div class="pregunta opciones">
+                            <label for="{{ form.password2.id_for_label }}">Confirmar
+                                contraseña</label>
+                                <input type="text" name="{{ form.password2.html_name }}" placeholder="Repita su contraseña">
+                        </div>
+
+                        <!-- Agrega estilos a los campos adicionales del formulario perfil_form -->
+                        <div class="pregunta opciones">
+                            <label for="{{ perfil_form.carrera.id_for_label }}">Carrera</label>
+                            <input type="text" name="{{ perfil_form.carrera.html_name }}" placeholder="Ingrese su carrera">
+                        </div>
+
+                        <div class="pregunta opciones">
+                            <label for="{{ perfil_form.edad.id_for_label }}">Edad</label>
+                            <input type="number" name="{{ perfil_form.edad.html_name }}" placeholder="Ingrese su edad">
+                        </div>
+
+                        <div class="pregunta opciones">
+                            <label for="{{ perfil_form.instituto.id_for_label }}">Instituto</label>
+                            <input type="text" name="{{ perfil_form.instituto.html_name }}" placeholder="Ingrese el nombre del instituto">
+                        </div>
+
+                        <div class="pregunta opciones">
+                            <label for="{{ perfil_form.sexo.id_for_label }}">Sexo</label>
+                            <input type="text" name="{{ perfil_form.sexo.html_name }}" placeholder="Ingrese su sexo">
+                        </div>
+
+                        <div class="pregunta opciones">
+                            <label for="{{ perfil_form.semestre.id_for_label }}">Semestre</label>
+                            <input type="text" name="{{ perfil_form.semestre.html_name }}" placeholder="Ingrese su semestre">
+                        </div>
+
+                        <input type="submit" value="Registrar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

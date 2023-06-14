@@ -1,6 +1,21 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+
+
+class Usuario(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    carrera = models.CharField(max_length=100)
+    instituto = models.CharField(max_length=100)
+    edad = models.CharField(max_length=100)
+    sexo = models.CharField(max_length=100)
+    semestre = models.CharField(max_length=100)
+
+    # Agrega cualquier otro campo adicional que desees
+
+    def __str__(self):
+        return self.user.username
 
 class Test(models.Model):
     nombre = models.CharField(max_length=255)
