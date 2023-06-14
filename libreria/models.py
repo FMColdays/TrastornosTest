@@ -9,7 +9,7 @@ class Usuario(models.Model):
     carrera = models.CharField(max_length=100)
     instituto = models.CharField(max_length=100)
     edad = models.CharField(max_length=100)
-    sexo = models.CharField(max_length=100)
+    sexo = models.IntegerField()
     semestre = models.CharField(max_length=100)
 
     # Agrega cualquier otro campo adicional que desees
@@ -40,4 +40,9 @@ class Respuesta(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
     pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE)
     opcion_respuesta = models.ForeignKey(OpcionRespuesta, on_delete=models.CASCADE)
+
+class Calificacion(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    test = models.ForeignKey(Test, on_delete=models.CASCADE)
+    calificacion = models.IntegerField()
 
