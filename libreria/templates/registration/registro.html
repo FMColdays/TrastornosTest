@@ -62,7 +62,11 @@
 
                         <div class="pregunta opciones">
                             <label for="{{ perfil_form.sexo.id_for_label }}">Sexo</label>
-                            <input type="text" name="{{ perfil_form.sexo.html_name }}" placeholder="Ingrese su sexo">
+                            <select class="section-registro" name="{{ perfil_form.sexo.html_name }}" >
+                                <option value="0">Hombre</option>
+                                <option value="1">Mujer</option>
+                            </select>
+                            
                         </div>
 
                         <div class="pregunta opciones">

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Usuario(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    carrera = models.CharField(max_length=100)
+    carrera = models.CharField(max_length=100) 
     instituto = models.CharField(max_length=100)
     edad = models.CharField(max_length=100)
     sexo = models.IntegerField()

@@ -82,6 +82,31 @@ def alcoholismo(request):
     preguntas = Pregunta.objects.filter(test=test_audit)
     return render(request, 'alcoholismo.html', {'preguntas': preguntas})
 
+
+@login_required
+def ansiedad(request):
+    # aqui va el audit xd
+    test_ansiedad = Test.objects.get(nombre='Ansiedad')  # Recuperar el test AUDIT
+    # Filtrar las preguntas solo para el test AUDIT
+    preguntas = Pregunta.objects.filter(test=test_ansiedad)
+    return render(request, 'ansiedad.html', {'preguntas': preguntas})
+
+@login_required
+def estres(request):
+    # aqui va el audit xd
+    test_estres = Test.objects.get(nombre='Estres')  # Recuperar el test AUDIT
+    # Filtrar las preguntas solo para el test AUDIT
+    preguntas = Pregunta.objects.filter(test=test_estres)
+    return render(request, 'estres.html', {'preguntas': preguntas})
+
+@login_required
+def afecciónAcadémica(request):
+    # aqui va el audit xd
+    test_AfectacionAcademica = Test.objects.get(nombre='AfeccionAcademica')  # Recuperar el test AUDIT
+    # Filtrar las preguntas solo para el test AUDIT
+    preguntas = Pregunta.objects.filter(test=test_AfectacionAcademica)
+    return render(request, 'afectacionAcademica.html', {'preguntas': preguntas})
+
 @login_required
 def salir(request):
     logout(request)
