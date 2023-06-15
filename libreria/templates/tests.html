@@ -12,24 +12,26 @@
         <link
             rel="shortcut icon"
             href="https://cdn-icons-png.flaticon.com/512/3923/3923306.png" />
-            <link rel="stylesheet"
+        <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
             integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="{% static 'css/normalize.css' %}" rel="stylesheet" />
         <link href="{% static 'css/index.css' %}" rel="stylesheet" />
-        <title>Test EDDS</title>
+        <title>{{ test_nombre }}</title>
+
     </head>
-    <body style="background-color: #d9efde;">
+    <body style="background-color: {{ color_fondo }};">
         <div>
-            <header class="header-preguntas" style="background-color: #009634;"></header>
+            <header class="header-preguntas"
+                style="background-color: {{ color_fondo }};"></header>
 
             <div class="contenedor-preguntas"> <!-- solo pone margin-->
                 <div class="contenedor contenido-preguntas">
                     <!-- centra el contenido y le da un display flex-->
                     <form action="#" method="POST">
                         <div class="pregunta">
-                            <h1 class="titulo-pregunta">Test Afeccion academica</h1>
+                            <h1 class="titulo-pregunta">Test de {{test_nombre}}</h1>
                         </div>
 
                         {% for pregunta in preguntas %}
@@ -53,10 +55,6 @@
                 </div>
             </div>
         </div>
-
-        <a class="ayuda" href="http://www.google.com">
-            <i class="fa-regular fa-question fa-beat"></i>
-        </a>
 
         <footer class="footer">
             <p><span>Test</span> TecNM</p>

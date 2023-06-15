@@ -4,7 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UsuarioForm
 from django.contrib.auth import logout, login
+import random
 # Create your views here.
+
+COLORES = ['#9AFAC2', '#FAF499', '#FA8E7D',
+           '#FAA8EF', '#CCD3FA', '#C3F9F9', '#9FFA9B']
 
 
 @login_required
@@ -30,82 +34,12 @@ def registro(request):
 
 
 @login_required
-def depresion(request):
-    # aqui va el test phq-9 xd
-    test_PHQ = Test.objects.get(nombre='PHQ-9')  # Recuperar el test
-    # Filtrar las preguntas solo para el test
-    preguntas = Pregunta.objects.filter(test=test_PHQ)
-    # Mandar las preguntas al test para que se recorran en un for
-    return render(request, 'depresion.html', {'preguntas': preguntas})
+def tests(request, test_nombre):
+    color_fondo = random.choice(COLORES)
+    testO = Test.objects.get(nombre=test_nombre)
+    preguntas = Pregunta.objects.filter(test=testO)
+    return render(request, 'tests.html', {'preguntas': preguntas, 'color_fondo': color_fondo, 'test_nombre': test_nombre})
 
-@login_required
-def mdq(request):
-    # aqui va el test mdq xd
-    test_MDQ = Test.objects.get(nombre='MDQ')  # Recuperar el test
-    # Filtrar las preguntas solo para el test
-    preguntas = Pregunta.objects.filter(test=test_MDQ)
-    # Mandar las preguntas al test para que se recorran en un for
-    return render(request, 'mdq.html', {'preguntas': preguntas})
-
-@login_required
-def drogas(request):
-    # aqui va el test DEP-ADO xd
-    DEP_ADO = Test.objects.get(nombre='DEP-ADO')  # Recuperar el test
-    # Filtrar las preguntas solo para el test
-    preguntas = Pregunta.objects.filter(test=DEP_ADO)
-    # Mandar las preguntas al test para que se recorran en un for
-    return render(request, 'drogas.html', {'preguntas': preguntas})
-
-@login_required
-def beck(request):
-    # aqui va el test DEP-ADO xd
-    BHS = Test.objects.get(nombre='BHS')  # Recuperar el test
-    # Filtrar las preguntas solo para el test
-    preguntas = Pregunta.objects.filter(test=BHS)
-    # Mandar las preguntas al test para que se recorran en un for
-    return render(request, 'beck.html', {'preguntas': preguntas})
-
-@login_required
-def edds(request):
-    # aqui va el test DEP-ADO xd
-    EDDS = Test.objects.get(nombre='EDDS')  # Recuperar el test
-    # Filtrar las preguntas solo para el test
-    preguntas = Pregunta.objects.filter(test=EDDS)
-    # Mandar las preguntas al test para que se recorran en un for
-    return render(request, 'edds.html', {'preguntas': preguntas})
-
-@login_required
-def alcoholismo(request):
-    # aqui va el audit xd
-    test_audit = Test.objects.get(nombre='AUDIT')  # Recuperar el test AUDIT
-    # Filtrar las preguntas solo para el test AUDIT
-    preguntas = Pregunta.objects.filter(test=test_audit)
-    return render(request, 'alcoholismo.html', {'preguntas': preguntas})
-
-
-@login_required
-def ansiedad(request):
-    # aqui va el audit xd
-    test_ansiedad = Test.objects.get(nombre='Ansiedad')  # Recuperar el test AUDIT
-    # Filtrar las preguntas solo para el test AUDIT
-    preguntas = Pregunta.objects.filter(test=test_ansiedad)
-    return render(request, 'ansiedad.html', {'preguntas': preguntas})
-
-@login_required
-def estres(request):
-    # aqui va el audit xd
-    test_estres = Test.objects.get(nombre='Estres')  # Recuperar el test AUDIT
-    # Filtrar las preguntas solo para el test AUDIT
-    preguntas = Pregunta.objects.filter(test=test_estres)
-    return render(request, 'estres.html', {'preguntas': preguntas})
-
-@login_required
-def afecciónAcadémica(request):
-    # aqui va el audit xd
-    test_AfectacionAcademica = Test.objects.get(nombre='AfeccionAcademica')  # Recuperar el test AUDIT
-    # Filtrar las preguntas solo para el test AUDIT
-    preguntas = Pregunta.objects.filter(test=test_AfectacionAcademica)
-    return render(request, 'afectacionAcademica.html', {'preguntas': preguntas})
 
 @login_required
 def salir(request):

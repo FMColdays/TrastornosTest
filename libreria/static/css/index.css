@@ -179,12 +179,17 @@ img {
 }
 
 .header-preguntas {
+    position: relative;
+    filter: brightness(0.8);
+    z-index: 1;
     width: 100%;
     height: 20rem;
     background-color: var(--headercolor);
 }
 
 .contenedor-preguntas, .contenedor-registro {
+    position: relative;
+    z-index: 2; 
     margin-top: -10rem;
     margin-bottom: 3rem;
 }
