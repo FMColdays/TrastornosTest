@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Pregunta, Test
+from .models import Pregunta, Test, Instituto, Carrera
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UsuarioForm
@@ -17,6 +17,8 @@ def inicio(request):
 
 
 def registro(request):
+    carreras = Carrera.objects.all()
+    institutos = Instituto.objects.all()
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         perfil_form = UsuarioForm(request.POST)
@@ -27,18 +29,22 @@ def registro(request):
             perfil.save()
             login(request, user)
             return redirect('inicio')
-    else:
+    else: 
         form = UserCreationForm()
         perfil_form = UsuarioForm()
-    return render(request, 'registration/registro.html', {'form': form, 'perfil_form': perfil_form})
+    
+    return render(request, 'registration/registro.html', {'form': form, 'perfil_form': perfil_form, 'institutos': institutos, 'carreras': carreras})
+    
+    
 
 
 @login_required
 def tests(request, test_nombre):
     color_fondo = random.choice(COLORES)
-    testO = Test.objects.get(nombre=test_nombre)
-    preguntas = Pregunta.objects.filter(test=testO)
+    tests = Test.objects.filter(nombre=test_nombre)
+    preguntas = Pregunta.objects.filter(test__in=tests)
     return render(request, 'tests.html', {'preguntas': preguntas, 'color_fondo': color_fondo, 'test_nombre': test_nombre})
+
 
 
 @login_required

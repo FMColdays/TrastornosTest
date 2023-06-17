@@ -376,4 +376,28 @@ img {
 }
 
 
+.input-registro.formulario__correcto{
+    outline: none;
+    border: 1px solid green ;
+}
+.input-registro.formulario__correcto::placeholder{
+    color: green;
+}
+
+.input-registro.formulario__incorrecto{
+    outline: none;
+    border: 1px solid red;
+}
+
+.input-registro.formulario__incorrecto::placeholder, .error{
+    color: red;
+}
+
+.coincidencia{
+    display: none;
+    color: red !important;
+}
+
+
+
 

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,12 +7,8 @@
         <title>Registrarse</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Roboto:wght@100;400;700;900&display=swap"
-            rel="stylesheet">
-        <link
-            rel="shortcut icon"
-            href="https://cdn-icons-png.flaticon.com/512/3923/3923306.png" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3923/3923306.png" />
         <link href="../../static/css/normalize.css" rel="stylesheet" />
         <link href="../../static/css/index.css" rel="stylesheet" />
     </head>
@@ -20,64 +17,109 @@
             <header class="header-preguntas" style="background-color: #009688;"></header>
 
             <div class="contenedor-registro">
-                <div class="contenedor contenido-preguntas ">
-                    <form class="form-registro " action="{% url 'registro' %}"
-                        method="post">
-                        <div class="pregunta ">
+                <div class="contenedor contenido-preguntas">
+                    <form id="formulario" class="form-registro" action="{% url 'registro' %}" method="post">
+                        <div class="pregunta">
                             <h1 class="titulo-pregunta">Registrarse</h1>
                         </div>
                         {% csrf_token %}
 
                         <div class="pregunta opciones">
-                            <label for="usuario">Usuario</label>
-                            <input id="usuario" type="text" name="{{ form.username.html_name }}" placeholder="Ingrese un nombre de usuario">
+                            <label for="{{ form.username.id_for_label }}">Usuario</label>
+                            <input class="input-registro" id="{{ form.username.id_for_label }}" type="{{ form.username.field.widget.input_type }}" name="{{ form.username.html_name }}" placeholder="Ingrese un nombre de usuario">
+                            {% if form.username.errors %}
+                                {% for error in form.username.errors %}
+                                    <span class="error">{{ error }}</span>
+                                {% endfor %}  
+                            {% endif %}   
+                        </div>
+                        
+
+                        <div class="pregunta opciones">
+                            <label for="correo">Correo institucional</label>
+                            <input class="input-registro" id="correo" type="email" name="correo" placeholder="Ingrese su correo institucional">
                         </div>
 
                         <div class="pregunta opciones">
-                            <label for="{{ form.password1.id_for_label }}">Contraseña</label>
-                            <input type="text" name="{{ form.password1.html_name }}" placeholder="Ingrese su contraseña">
+                            <label for="{{ form.password1.id_for_label }}">{{ form.password1.label_tag }}</label>
+                            <input class="input-registro" id="{{ form.password1.id_for_label }}" type="{{ form.password1.field.widget.input_type }}" name="{{ form.password1.html_name }}" placeholder="{{ form.password1.label }}">
+                            {% if form.password1.errors %}
+                                {% for error in form.password1.errors %}
+                                    <span class="error">{{ error }}</span>
+                                {% endfor %}  
+                            {% endif %}
                         </div>
-
+                    
                         <div class="pregunta opciones">
-                            <label for="{{ form.password2.id_for_label }}">Confirmar
-                                contraseña</label>
-                                <input type="text" name="{{ form.password2.html_name }}" placeholder="Repita su contraseña">
+                            <label for="id_password2">Confirmar contraseña</label>
+                            <input class="input-registro" id="id_password2" type="password" name="password2" placeholder="Repita su contraseña">
+                            {% if form.password2.errors %}
+                                <ul>
+                                {% for error in form.password2.errors %}
+                                    <li class="error">{{ error }}</>
+                                {% endfor %}  
+                                </ul>
+                            {% endif %}
+                            <p class="errorE coincidencia">Las contraseñas no coinciden</p>
                         </div>
 
                         <!-- Agrega estilos a los campos adicionales del formulario perfil_form -->
                         <div class="pregunta opciones">
-                            <label for="{{ perfil_form.carrera.id_for_label }}">Carrera</label>
-                            <input type="text" name="{{ perfil_form.carrera.html_name }}" placeholder="Ingrese su carrera">
+                            <label for="carrera">Carrera</label>
+                            <select id="carrera" class="section-registro" name="carrera">  
+                                {% for carrera in carreras %}
+                                    <option value="{{ carrera.id }}">{{ carrera.nombre }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
 
                         <div class="pregunta opciones">
-                            <label for="{{ perfil_form.edad.id_for_label }}">Edad</label>
-                            <input type="number" name="{{ perfil_form.edad.html_name }}" placeholder="Ingrese su edad">
+                            <label for="edad">Edad</label>
+                            <input class="input-registro" id="edad" type="number" name="edad" placeholder="Ingrese su edad" min="0">
                         </div>
 
                         <div class="pregunta opciones">
-                            <label for="{{ perfil_form.instituto.id_for_label }}">Instituto</label>
-                            <input type="text" name="{{ perfil_form.instituto.html_name }}" placeholder="Ingrese el nombre del instituto">
+                            <label for="instituto">Instituto</label>
+                            <select id="instituto" class="section-registro" name="instituto">  
+                                {% for instituto in institutos %}
+                                    <option value="{{ instituto.id }}">{{ instituto.nombre }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
+                        
 
                         <div class="pregunta opciones">
-                            <label for="{{ perfil_form.sexo.id_for_label }}">Sexo</label>
-                            <select class="section-registro" name="{{ perfil_form.sexo.html_name }}" >
+                            <label for="sexo">Sexo</label>
+                            <select id="sexo" class="section-registro" name="sexo">
                                 <option value="0">Hombre</option>
                                 <option value="1">Mujer</option>
                             </select>
-                            
                         </div>
 
                         <div class="pregunta opciones">
-                            <label for="{{ perfil_form.semestre.id_for_label }}">Semestre</label>
-                            <input type="text" name="{{ perfil_form.semestre.html_name }}" placeholder="Ingrese su semestre">
+                            <label for="semestre">Semestre</label>
+                            <select class="section-registro" name="semestre">
+                                <option value="1">Primero</option>
+                                <option value="2">Segundo</option>
+                                <option value="3">Tercero</option>
+                                <option value="4">Cuarto</option>
+                                <option value="5">Quinto</option>
+                                <option value="6">Sexto</option>
+                                <option value="7">Septimo</option>
+                                <option value="8">Octavo</option>
+                                <option value="9">Noveno</option>
+                                <option value="10">Decimo</option>
+                            
+                            </select>
                         </div>
 
-                        <input type="submit" value="Registrar">
+                        <input id="btnregistrar" type="submit" value="Registrar">
                     </form>
                 </div>
             </div>
         </div>
+
+        <script src="{% static 'js/index.js' %}"></script>
+
     </body>
 </html>
