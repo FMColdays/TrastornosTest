@@ -7,7 +7,7 @@ if (document.querySelector(".errorU") && true) {
   });
 }
 
-if (document.querySelectorAll(".errorp2") && true) {
+if (document.querySelector(".errorp2") && true) {
   document.getElementById("password2").addEventListener("input", () => {
     document.querySelector(".errorp2").classList.add("disnone");
   });
