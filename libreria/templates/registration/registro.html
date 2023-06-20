@@ -25,11 +25,11 @@
                         {% csrf_token %}
 
                         <div class="pregunta opciones">
-                            <label for="{{ form.username.id_for_label }}">Usuario</label>
-                            <input class="input-registro" id="{{ form.username.id_for_label }}" type="{{ form.username.field.widget.input_type }}" name="{{ form.username.html_name }}" placeholder="Ingrese un nombre de usuario">
+                            <label for="username">Usuario</label>
+                            <input class="input-registro" id="username" type="{{ form.username.field.widget.input_type }}" name="username" placeholder="Ingrese un nombre de usuario">
                             {% if form.username.errors %}
                                 {% for error in form.username.errors %}
-                                    <span class="error">{{ error }}</span>
+                                    <span class="errorU">{{ error }}</span>
                                 {% endfor %}  
                             {% endif %}   
                         </div>
@@ -41,29 +41,32 @@
                         </div>
 
                         <div class="pregunta opciones">
-                            <label for="{{ form.password1.id_for_label }}">{{ form.password1.label_tag }}</label>
-                            <input class="input-registro" id="{{ form.password1.id_for_label }}" type="{{ form.password1.field.widget.input_type }}" name="{{ form.password1.html_name }}" placeholder="{{ form.password1.label }}">
+                            <label for="password1">{{ form.password1.label_tag }}</label>
+                            <input class="input-registro" id="password1" type="{{ form.password1.field.widget.input_type }}" name="password1" placeholder="{{ form.password1.label }}">
                             {% if form.password1.errors %}
                                 {% for error in form.password1.errors %}
-                                    <span class="error">{{ error }}</span>
+                                    <span class="errorU">{{ error }}</span>
                                 {% endfor %}  
                             {% endif %}
+                            <ul class="requisitosPassword">
+                                <li>Minimo 8 caracteres</li>
+                                <li>Al menos una mayuscula</li>
+                                <li>Al menos un numero</li>
+                                <li>Sin caracteres especiales</li> 
+                            </ul>
                         </div>
                     
                         <div class="pregunta opciones">
-                            <label for="id_password2">Confirmar contraseña</label>
-                            <input class="input-registro" id="id_password2" type="password" name="password2" placeholder="Repita su contraseña">
+                            <label for="password2">Confirmar contraseña</label>
+                            <input class="input-registro" id="password2" type="password" name="password2" placeholder="Repita su contraseña">
                             {% if form.password2.errors %}
-                                <ul>
                                 {% for error in form.password2.errors %}
-                                    <li class="error">{{ error }}</>
+                                    <p class="errorp2">{{ error }}</>
                                 {% endfor %}  
-                                </ul>
                             {% endif %}
                             <p class="errorE coincidencia">Las contraseñas no coinciden</p>
                         </div>
 
-                        <!-- Agrega estilos a los campos adicionales del formulario perfil_form -->
                         <div class="pregunta opciones">
                             <label for="carrera">Carrera</label>
                             <select id="carrera" class="section-registro" name="carrera">  
@@ -80,9 +83,11 @@
 
                         <div class="pregunta opciones">
                             <label for="instituto">Instituto</label>
+                            <input type="text" name="" id="" onchange="buscar(event)" >
                             <select id="instituto" class="section-registro" name="instituto">  
                                 {% for instituto in institutos %}
-                                    <option value="{{ instituto.id }}">{{ instituto.nombre }}</option>
+                                
+                                    <option class="buscar" value="{{ instituto.id }}">{{ instituto.nombre }}</option>
                                 {% endfor %}
                             </select>
                         </div>

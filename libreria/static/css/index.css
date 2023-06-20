@@ -389,8 +389,12 @@ img {
     border: 1px solid red;
 }
 
-.input-registro.formulario__incorrecto::placeholder, .error{
+.input-registro.formulario__incorrecto::placeholder, .errorU, .errorp2{
     color: red;
+}
+
+.disnone{
+    display: none !important;
 }
 
 .coincidencia{
@@ -398,6 +402,8 @@ img {
     color: red !important;
 }
 
-
+.requisito-correcto{
+    color: green;
+}
 
 
